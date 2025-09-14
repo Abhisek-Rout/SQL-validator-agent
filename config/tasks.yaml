@@ -1,0 +1,37 @@
+tasks:
+  check_sql:
+    description: |
+      Analyze the provided SQL query for the following aspects:
+        1. Syntax correctness.
+        2. Logical consistency.
+        3. Performance and best practices.
+      
+      Ignore all comments in the query. Focus solely on the SQL logic and structure. 
+      Do not execute the query; base your analysis on the query text only.
+
+      Return only the analysis in the specified JSON format. 
+      If no issues or improvements are found, return an empty list for 'issues' and 'suggestions', 
+      and an empty string for 'new_sql'.
+
+      Query to analyze:
+      {sql}
+
+    expected_output: |
+      JSON object with the following fields:
+        - issues: list of identified problems (syntax, logical, or performance-related)
+        - suggestions: list of recommended improvements
+        - complexity: "Low" | "Medium" | "High" (estimate the query's complexity)
+        - new_sql: corrected SQL query incorporating all improvements (empty string if no changes)
+
+  evaluate_sql:
+    description: |
+      You are an evaluator. Your ONLY job is to review the SQLChecker's analysis output
+      and determine if it is correct, accurate, and relevant.
+      
+      DO NOT re-analyze the SQL query yourself.
+      Focus only on judging the quality of the SQLChecker’s output.
+    expected_output: |
+      JSON object with:
+        - verdict: "Valid analysis" | "Invalid analysis"
+        - confidence: float between 0 and 1
+        - comments: one short sentence explaining why

@@ -20,8 +20,6 @@ logs/
 
 # Reports / output
 reports/
-sql_files/__temp__/
-*.txt
 
 # IDE / Editor files
 .vscode/
@@ -32,3 +30,10 @@ sql_files/__temp__/
 # OS generated
 .DS_Store
 Thumbs.db
+
+# Ignore everything in input/ folder
+input/*
+
+# Except these two files
+!input/test_good.sql
+!input/test_bad.sql
